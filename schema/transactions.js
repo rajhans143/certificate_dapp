@@ -11,11 +11,11 @@ module.exports = {
         minLength: 1,
         maxLength: 100
       },
-      amount: {
+      /*amount: {
         type: "integer",
         minimum: 1,
         maximum: constants.totalSupply
-      },
+      },*/
       publicKey: {
         type: "string",
         format: "publicKey"
@@ -37,7 +37,6 @@ module.exports = {
     },
     required: ['secret', 'amount', 'dappId', 'countryCode']
   },
-
   inTransfer: {
     type: 'object',
     properties: {
@@ -46,11 +45,11 @@ module.exports = {
         minLength: 1,
         maxLength: 100
       },
-      amount: {
+      /*amount: {
         type: "integer",
         minimum: 1,
         maximum: constants.totalSupply
-      },
+      },*/
       recipientId: {
         type: 'string',
         minLength: 1
@@ -81,4 +80,4 @@ module.exports = {
     },
     required: ['secret', 'amount', 'recipientId', 'dappId', 'senderCountryCode', 'recepientCountryCode']
   }
-}
+};

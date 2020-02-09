@@ -1,288 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Index  </title>
-      <meta charset="utf-8">
-      <link rel="shortcut icon" href="belfricslogo.PNG" />
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <script src="js/jquery-2.1.3.js"></script>
-      <!-- <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script> -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      
-      <script src="../contract/certificate.js"></script>
-    
-    
-      <link rel="stylesheet" href="homestyle.css" />
-      <script src="js/jsfile.js"></script>
+<html>
+    <head>
+        <title>Login page</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                           var email,password;
+                           $("#login").click(function(){   
+                               email=$("#email").val();
+                               password=$("#password").val();
+                            $.post("http://54.251.138.1:9305/api/dapps/338bad04fc5afdffcdb98c00f6c1ecfbbe53af615bce1da4eaf14c23a331ba06/userlogin/",
+                            {email: email,password: password},
+                            function(data){
+                               if(data.isSuccess===true)
+                               {
+                                   window.location.href="wallet1.html"+"?"+data.data.email;
+                               }
+                               else
+                               {
+                                   $("#message").html("Username or Password is incorrect");
+                               }
+                       });
+                           });
+                       });
+           </script>
     </head>
-
-
-<body>
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
- <a class="navbar-brand" href="#"> <span style="color:white"> BELFRICS CERTIFICATE DAPP </span></a>
-  <a href="CertificateView.html" target="_blank" class="btn btn-warning btn-lg">
-            <span class="glyphicon glyphicon" ></span> View
-          </a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-<button type="button" class="btn btn-danger pull-right">Sign Out</button>
-</div>
-</nav>
-
-</div><br>
-
-<div class="container-fluid" >
-  <div class="col-md-4">
-    <form>
-      <div class="well clearfix">
-        <div class="form-group">
-        
-          
-          Date:
-          <div class='input-group date' id='txtdate1'>
-              <input type='text' class="form-control" placeholder="Select date" onclick="functionName('txtdate1','date')" />
-              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-              </span>
-          </div>
-    
-
-
-    
-    
-    Student Name: <input type="text" id="txtstudent" placeholder="Student Name" class="form-control" onclick="functionName('txtstudent','display')"> <br>
-    Student ID: <input type="text" id="txtid" placeholder="Student ID" class="form-control" onclick="functionName('txtid','display1')"> <br>
-<!--           EmailID: <input type="text" id="txtemailid" placeholder="Course" class="form-control" onclick="functionName('txtemailid','emailid')"> <br>  --> 
-    Course: <input type="text" id="txtcourse" placeholder="Course" class="form-control" onclick="functionName('txtcourse','course')"> <br>  
-    University issuer Director: <input type="text" placeholder="Issuer" id="txtuniversity" class="form-control" onclick="functionName('txtuniversity','authorized_signatory')"> <br>
-     Date of issue:
-          <div class='input-group date' id='txtdate2'>
-              <input type='text' class="form-control" placeholder="Select date" onclick="functionName('txtdate2','date')" />
-              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-              </span>
-          </div>
-    enrollmentId: <input type="text" id="txtEID" placeholder="EID" class="form-control" onclick="functionName('txtEID','enrollment_id')"> <br>
-    <!-- secret: <input type="text" id="txtsecret" placeholder="Secret" class="form-control"> <br> -->  
-    <!-- institute: <input type="text" id="txtinst" placeholder="Institute" class="form-control" onclick="functionName('txtinst','from')"> <br> -->
-
-    <input type="button" value="Create" class="btn btn-info col-md-2" onclick="test();">
-<script>
-function test(){
-        var DAPP_ID = '27566d2d1464d1ca9964662027c4ac317bf3d6fcd1f23dc97ecabd1975b8dd09';
-        //  window.location.pathname.split('/')[2];
-         
-  //      console.log("DAPP_ID: "+DAPP_ID);
-//         var DAPP_ID = window.location.pathname.split('/')[2];
-       // var BASE_URL = '/api/dapps/' + DAPP_ID;
-       var BASE_URL = 'http://localhost:9305/api/dapps/' + DAPP_ID;
-
-//ddress,name,id,university,coursename,date,certid
-        var date1   = document.getElementById("txtdate1").value;
-        var name    = document.getElementById("txtstudent").value; //studentname
-        var id    = document.getElementById("txtid").value; //id
-        var university = document.getElementById("txtuniversity").value; //university
-
-        var coursename = document.getElementById("txtcourse").value; // coursename
-         var dateofissue    = document.getElementById("txtdate2").value;  //date of issue 	
-        //var secret  = document.getElementById("txtsecret").value;
-        var secret = 'offer cry duck relief work nerve concert penalty demand impulse bonus vague';
-        var enrollmentId    = document.getElementById("txtEID").value;//enrollmentID 
-          //address,name,id,university,coursename,dateofissue,enrollmentId
-
-          var secode=window.prompt("Secret Code");
-        
-        console.log("secret code: "+secode);
-        var fee = '10000000';
-        console.log("date1   :"+date1);
-        var args = JSON.stringify([name,id,university,coursename,dateofissue,enrollmentId]);
-        console.log("args   :"+args);
-
-        var data = {
-              secret: secret,
-              fee: fee,
-              type: 1000, 
-              args: args
-              //              args: JSON.stringify([name,course1,university,DOI1])
-            }
-            console.log("data   :"+data);
-   
-     $.ajax({
-              type: 'PUT',
-              url: BASE_URL + '/transactions/unsigned',
-              data: data,
-              dataType: 'json',
-              success: function(ret) {
-                  console.log(ret);
-                  if (!ret.success) {
-                      alert('Error: ' + ret.error);
-                      return;
-                  }
-                  alert("Success! " + ret.transactionId);
-              }});
-//alert("test" + id);
-}
-
-/*function studentname(){
-  $('#txtstudent').keyup(function () {
-  $('#display').text($(this).val());
-});
-}*/
-
-function functionName(inputID, displayID){
-  $('#'+inputID).keyup(function () {
-  $('#'+displayID).text($(this).val());
-});
-}
-
- function ShowData(EID2) {
-                 $.ajax({
-              type: 'GET',
-              url: BASE_URL + '/certificate/:enrollmentId',
-              data: EID2,
-              dataType: 'json',
-              success: function(ret) {
-                  console.log(ret);
-                  if (!ret.success) {
-                      alert('Error: ' + ret.error);
-                      return;
-                  }
-                  alert("Success! " + ret.transactionId);
-                  displaycertificate(ret);
-                  console.log(ret);
-                }
-            });
-
-            }
-
-// id ,name,course1,university,DOI1,EID1
-function displaycertificate(ret){
-//              args: JSON.stringify(date1,id,course1,university,DOI1)
-        var tblRow = "<tr>" + "<td>" + ret.date1 + "</td>" +
-           "<td>" + ret.id + "</td>" + "<td>" + ret.course1 + "</td>" + "<td>" + ret.university + "</td>" + "</tr>"
-// add EID1
-           $(tblRow).appendTo("#userdata tbody");
-     }
-
-</script>
-        </div>
-      </div>
-    </form>
-  </div>
-  <div class="col-md-6">
-    <div style="width:800px; height:600px; padding:20px; text-align:center; border: 10px solid #DAA520">
-      <div style="width:750px; height:550px; padding:20px; text-align:center; border: 5px solid #DAA520">
-             <span style="font-size:50px; font-weight:bold"><em>Certificate of Completion</em></span>
-             <br><br>
-             <span style="font-size:25px"><em>This is to certify that</em></span><br><br>
-             <span style="font-size:30px" id="display"><b></b></span><br/><br/>
-             <span style="font-size:25px"><em>has completed the course</em></span> <br/><br/>
-             <span style="font-size:30px" id="course"></span> <br/><br/>
-             <span style="font-size:20px"><em>from</em><b></b></span> <br/><br/>
-             <span style="font-size:30px" id="from"></span> <br/><br/>
-             <br/><br/>
-             <div style="width: 100%">    
-                <div style="width: 33%; float:left ">
-               <div id=date_of_issue></div>
-               <div><em>Date Of issue</em></div>
-               </div>
-               <div style="width: 33%; float:left">
-               <div id=enrollment_id></div>
-               <div><em> Enrollment Id </em></div>
-               </div>
-               <div style="width: 33%; float:left ">
-               <div id=authorized_signatory></div>
-               <div><em> Authorized Signatory </em></div>
-               </div>
-             <!-- <span style="font-size:25px" id="date"><i>dated</i></span><br>
-            #set ($dt = $DateFormatter.getFormattedDate($grade.getAwardDate(), "MMMM dd, yyyy"))
-            <span style="font-size:30px">$dt</span> -->
-      </div>
-      </div>
-  </div>
-
-
-  <!-- <script language="javascript">
-
-    function  postData(){
-//alert("hi");
-        var DAPP_ID = window.location.pathname.split('/')[2];
-        console.log("DAPP_ID: "+DAPP_ID);
-        var BASE_URL = '/api/dapps/' + DAPP_ID;
-        var date1   = document.getElementById("txtdate").value;
-        var id    = document.getElementById("txtstudent").value;
-        var course1 = document.getElementById("txtcourse").value;
-        var university = document.getElementById("txtuniversity").value;
-        var DOI1    = document.getElementById("txtDOI").value;
-        var secret  = document.getElementById("txtsecret").value;
-        var inst1   = document.getElementById("txtinst").value;
-        var EID1   = document.getElementById("txtEID").value;
-      //var args = $('#contractArgs').val().split('\n')
-      //"args": "[\"abcdj\",\"ridd\",\"widd\",\"sidd\",\"didd\"]",
-//      recipientAddress, name, enrollmentId, major, institute
-          var fee = '10000000';
-          var data = {
-              secret: secret,
-              fee: fee,
-              type: 1000, 
-//              args: JSON.stringify(date1,id,course1,university,DOI1)
-              args: JSON.stringify(date1,id,course1,university,EID1)
-
-            }
-          console.log('invoke', data)
-          $.ajax({
-              type: 'PUT',
-              url: BASE_URL + '/transactions/unsigned',
-              data: data,
-              dataType: 'json',
-              success: function(ret) {
-                  console.log(ret);
-                  if (!ret.success) {
-                      alert('Error: ' + ret.error);
-                      return;
-                  }
-                  alert("Success! " + ret.transactionId);
-              }});
-
-    }
-
-      //  var EID2   = document.getElementById("txtEID").value;
-     var EID2 =  "1" ;
-   
-     function Verify(ret){
-        <p> University details </p>
-       var tblRow = "<tr>" + "<td>" + ret.date1 + "</td>" +
-           "<td>" + ret.id + "</td>" + "<td>" + ret.course1 + "</td>" + "<td>" + ret.university + "</td>" + "</tr>"
-
-           $(tblRow).appendTo("#userdata tbody");
-     }
-
-//get the unersity
-
-     }
-
-
-
-  </script> -->
- 
-
-
-  <script src="js/jspdf.js"></script>
-  <script src="js/pdfFromHTML.js"></script>
-  <script src="js/bindDatePicker.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-</body>
+    <body>
+        Email: <input type="text" id="email"/><br>
+        Password: <input type="password" id="password"/><br>
+        <button id="login">Login</button><br>
+        <span id="message"></span>
+    </body>
 </html>
-
-
-

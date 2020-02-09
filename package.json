@@ -1,18 +1,32 @@
 {
-  "name": "27566d2d1464d1ca9964662027c4ac317bf3d6fcd1f23dc97ecabd1975b8dd09",
+  "name": "payrollv1",
   "version": "1.0.0",
   "description": "## Install Backend",
   "main": "init.js",
-  "directories": {
-    "test": "test"
+  "dependencies": {
+    "aws-sdk": "^2.376.0",
+    "bcryptjs": "^2.4.3",
+    "bytebuffer": "^5.0.1",
+    "crypto": "^1.0.1",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "log4js": "^3.0.6",
+    "logger": "0.0.1",
+    "nodemailer": "^4.6.8",
+    "request": "^2.88.0"
   },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnbonda/payrollv1.git"
+  },
+  "author": "john",
   "license": "ISC",
-  "dependencies": {
-    "bytebuffer": "^5.0.1",
-    "long": "^4.0.0"
-  }
+  "bugs": {
+    "url": "https://github.com/johnbonda/payrollv1/issues"
+  },
+  "homepage": "https://github.com/johnbonda/payrollv1#readme"
 }

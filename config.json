@@ -1,16 +1,37 @@
 {
-   "peers": {
-	"list": [{"ip":"52.66.157.170","port":9305},{"ip": "13.233.145.150", "port": 9305}, {"ip": "13.231.128.229", "port": 9305},{"ip": "52.221.241.90", "port": 9305}, {"ip": "34.245.107.171", "port": 9305}],
- 	"blackList": [],
-    	"options": {
-      		"timeout": 4000
-    	}
-   }
+ "peers": {
+    "list": [{"ip":"52.66.157.170","port":9305},{"ip": "13.233.145.150", "port": 9305}, {"ip": "13.231.128.229", "port": 9305}, {"ip": "52.221.241.90", "port": $
+    "blackList": [],
+    "options": {
+      "timeout": 4000
+    }
+  },
   "secrets": [
-	"group inflict candy supply gas sniff disease make nut scene fiction relax",
-	"flag broken mother slight glow genuine clog fault olympic lazy heart pledge",
-	"cherry impact danger under wrong myself orbit salute furnace budget topic rely",
-	"ozone matrix soup junior cement student august divide tent bunker keen cloth",
-	"auto next fan table common level artwork capable crop napkin bicycle cherry"
-  ]
+	 "group inflict candy supply gas sniff disease make nut scene fiction relax",
+         "flag broken mother slight glow genuine clog fault olympic lazy heart pledge",
+         "cherry impact danger under wrong myself orbit salute furnace budget topic rely",
+         "ozone matrix soup junior cement student august divide tent bunker keen cloth",
+         "auto next fan table common level artwork capable crop napkin bicycle cherry"
+  ],
+  "email": {
+    "service" : "gmail",
+    "host": "smtp.gmail.com",
+    "port": 587,
+    "auth": {
+        "user": "john.vikingsdownload@gmail.com",
+        "pass": "Windlm946356"
+    },
+    "tls": { "rejectUnauthorized": false},
+    "debug":true
+  },
+  "token": {
+    "email": "vinodhp@yopmail.com",
+    "password": "viNODH12$",
+    "totp": "string"
+  },
+  "links": {
+    "verifyLink": "http://52.201.227.220/payroll_structured/Views/Verify/verify.html",
+    "registerEmp": "http://52.201.227.220/payroll_structured/Token_generator/token.html"
+  },
+  "tokenKey": "Implementing JWT tokens"
 }
