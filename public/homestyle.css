@@ -1,0 +1,62 @@
+.navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+.nav {
+    float: right;
+
+
+}
+.fa {
+    padding: 3px;
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+.fa-github {
+    background: #a4c639;
+    color: white;
+}
+.hr {
+    color: blue;
+}
+
+ 
+.table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.td {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+.th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.tr:nth-child(even) {
+    background-color: #dddddd;
+}

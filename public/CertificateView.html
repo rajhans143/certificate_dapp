@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>CertificateView  </title>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="belfricslogo.PNG" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+  <!-- <script src="../contract/certificate.js"></script> -->
+
+
+  <link rel="stylesheet" href="homestyle.css" />
+
+</head>
+
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#" <span style="color:white"><b>BELFRICS CERTIFICATE DAPP</b></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+<button type="button" class="btn btn-danger pull-right">Sign Out</button>
+</div>
+</nav>
+
+</div><br>
+
+<body>
+
+<div class="container-fluid">
+  <div class="col-md-12">
+    <form>
+      <div class="well clearfix">
+        <div class="form-group">        
+          Certificate Id: <input type="text" id="txtEID" placeholder="EID" class="form-control"> <br>         
+        </div>
+        <div>
+<div class="visible">
+         <div class="form-group" style="text-align:left">
+  <!-- <input type="button" value="Submit" class="btn btn-info col-md-2" onclick="Submit();"> -->
+  <input type="button" disabled="true" id="Downloadbtn" value="Download" class="btn btn-warning  col-md-2" onclick="HTMLtoPDF()">
+    <input type="button" value="Verify" class="btn btn-info col-md-2" onclick="Verify(EID2);">
+    	<input type="button" value="Sign" class="btn btn-primary col-md-2" onclick="Sign(EID3);">
+  </div>
+  <br><br>
+    </form>
+  </div>
+  <div class="invisible">
+       <div id="HTMLtoPDF">
+         <div class="col-md-12">
+    <div style="width:800px; height:600px; padding:20px; text-align:center; border: 10px solid #DAA520">
+      <div style="width:750px; height:550px; padding:20px; text-align:center; border: 5px solid #DAA520">
+             <span style="font-size:50px; font-weight:bold"><em>Certificate of Completion</em></span>
+             <br><br>
+             <span style="font-size:25px"><em>This is to certify that</em></span><br><br>
+             <span style="font-size:30px" id="display"><b></b></span><br/><br/>
+             <span style="font-size:25px"><em>has completed the course</em></span> <br/><br/>
+             <span style="font-size:30px" id="course"></span> <br/><br/>
+             <span style="font-size:20px"><em>from</em><b></b></span> <br/><br/>
+             <span style="font-size:30px" id="from"></span> <br/><br/>
+             <br/><br/>
+             <div style="width: 100%">    
+                <div style="width: 33%; float:left ">
+               <div id=date_of_issue></div>
+               <div><em>Date Of issue</em></div>
+               </div>
+               <div style="width: 33%; float:left">
+               <div id=enrollment_id></div>
+               <div><em> Enrollment Id </em></div>
+               </div>
+               <div style="width: 33%; float:left ">
+               <div id=authorized_signatory></div>
+               <div><em> Authorized Signatory </em></div>
+               </div>
+             <!-- <span style="font-size:25px" id="date"><i>dated</i></span><br>
+            #set ($dt = $DateFormatter.getFormattedDate($grade.getAwardDate(), "MMMM dd, yyyy"))
+            <span style="font-size:30px">$dt</span> -->
+      </div>
+      </div>
+  </div>
+</div>
+
+      </div>
+      </div>
+</div>
+
+<script language="javascript">
+            var DAPP_ID =  '27566d2d1464d1ca9964662027c4ac317bf3d6fcd1f23dc97ecabd1975b8dd09';
+        //window.location.pathname.split('/')[2];
+        console.log("DAPP_ID: "+DAPP_ID);
+        var BASE_URL = 'http://localhost:9305/api/dapps/' + DAPP_ID;
+
+    var EID2   = document.getElementById("txtEID").value;
+    function Verify(ret){
+    	document.getElementById("Downloadbtn").disabled = false;
+      console.log("came here");
+        $.ajax({
+              type: 'GET',
+              url: BASE_URL + '/certificate/:enrollmentId',
+              data: EID2,
+              dataType: 'json',
+              success: function(ret) {
+                  console.log(ret);
+                  
+                  if (!ret.success) {
+                      alert('Error: ' + ret.error);
+                      return;
+                  }
+               //   alert("Success! " + ret.id);
+             //     Verify(ret);
+                  console.log("ret : "+ret);
+                }
+            });
+	//var obj1={DOI1:"doi",stu1:"jyotsna",issuer1:"chary",course1:"blockchain"};
+	//var queryString = "?DOI1=" + obj1.DOI1 + "&stu1=" + obj1.stu1 + "&issuer1=" +obj1.issuer1 + "&course1=" +obj1.course1;	
+	var queryString = "?DOI1=" + ret.DOI1 + "&stu1=" + ret.stu1 + "&issuer1=" +ret.issuer1 + "&course1=" +ret.course1;
+	window.location.href = "VerifyCertificate.html" + queryString;
+
+// id ,name,course1,issuer1,DOI1,EID1
+       //var tblRow = "<tr>" + "<td>" + ret.date1 + "</td>" +
+        //   "<td>" + ret.id + "</td>" + "<td>" + ret.course1 + "</td>" + "<td>" + ret.issuer1 + "</td>" + "</tr>"
+         //  $(tblRow).appendTo("#userdata tbody");
+    }
+//add ,DOI1,EID1 above
+
+var EID3   = document.getElementById("txtEID").value;
+
+
+    function Sign(EID3){
+//    	var DAPP_ID =   window.location.pathname.split('/')[2];
+      	var DAPP_ID =   '27566d2d1464d1ca9964662027c4ac317bf3d6fcd1f23dc97ecabd1975b8dd09';
+
+
+        console.log("DAPP_ID: "+DAPP_ID);
+        var BASE_URL = 'http:localhost:9305/api/dapps/' + DAPP_ID;
+        var secret = 'offer cry duck relief work nerve concert penalty demand impulse bonus vague';
+
+        // var EID   = document.getElementById("txtEID").value;
+        // args = JSON.stringify(EID);
+        // console.log("args   :"+args);
+      //  var EID2   = document.getElementById("txtEID2").value;
+ //   var args = JSON.stringify(EID2);
+       // console.log("args   :"+args);
+        var fee = '10000000';
+       	var data = {
+              secret: secret,
+              fee: fee,
+              type: 1001, 
+              args:JSON.stringify([EID3])
+             // args: JSON.parse([DOI1,id,course1,university,EID1]    
+        
+            }
+        $.ajax({
+              type: 'PUT',
+              url: BASE_URL + '/transactions/unsigned',
+              data: data,
+              dataType: 'json',
+              success: function(ret) {
+                  console.log(ret);
+                  if (!ret.success) {
+                      alert('Error: ' + ret.error);
+                      return;
+                  }
+                  alert("Success! " + ret.transactionId);
+              }});
+      //  alert("Transaction Successful "+ret.transactionId);
+}
+  </script>
+ 
+<div class="container-fluid">
+                
+    <div class="col-md-12">
+    <!-- <a href="#" target="_blank" class="btn btn-info btn-lg" onclick="HTMLtoPDF()">
+      <span class="glyphicon glyphicon-download"></span> Download
+    </a>
+
+    <a href="#" target="_blank" class="btn btn-info btn-lg" onclick="ShowData()">
+            <span class="glyphicon glyphicon-download"></span> View
+          </a>
+
+    <a href="#" target="_blank" class="btn btn-info btn-lg" onclick="Verify()">
+                <span class="glyphicon glyphicon-download"></span> Verify
+              </a>
+ -->
+  <!-- <a href="#" onclick="HTMLtoPDF()">Download PDF</a> -->
+
+
+
+
+ </div>
+</div>
+<!--
+<div class="visible">
+  <div class="wrapper">
+        <div class="profile">
+           <table id= "userdata">
+          <thead>
+                    <th>Name</th>
+                    <th>Course</th>
+                    <th>University issuer</th>
+                    <th>Date of Issue</th>
+                    <th>EnrollmentID</th>
+                </thead>
+              <tbody>
+        
+               </tbody>
+           </table>
+        
+        </div>
+      </div>
+</div>
+-->
+  <script src="js/jspdf.js"></script>
+  <script src="js/jquery-2.1.3.js"></script>
+  <script src="js/pdfFromHTML.js"></script>
+  <!-- <script src="js/bootstrap.min.js"></script> -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
